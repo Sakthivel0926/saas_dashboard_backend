@@ -12,6 +12,16 @@ class SubscriptionPlanSerializer(serializers.ModelSerializer):
 
 class SubscriptionSerializer(serializers.ModelSerializer):
 
+    company_name = serializers.CharField(source="tenant.company_name", read_only=True)
+    plan_name = serializers.CharField(source="plan.plan_name", read_only=True)
+
     class Meta:
         model = Subscription
-        fields = "__all__"
+        fields = [
+            "id",
+            "company_name",
+            "plan_name",
+            "start_date",
+            "end_date",
+            "status"
+        ]
